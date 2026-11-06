@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="jjitalaS5.Views.vPersona"
+             Title="vPersona">
+    <VerticalStackLayout
+        Padding="15"
+        Spacing="15">
+        <Label 
+            Text="Semana 5:  BASES DE DATOS LOCALES"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="txtName"
+            Placeholder="Ingrese su nombre" />
+
+        <Grid Padding="5" RowSpacing="5" ColumnSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="btnAgregar" 
+                    Text="Guardar Persona" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Clicked="btnAgregar_Clicked"/>   
+            <Label x:Name="lblStatusMessage"
+                   TextColor="red"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+            <Button x:Name="btnVerPersonas" 
+                    Text="Ver Personas" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="btnVerPersonas_Clicked"/>
+            <CollectionView x:Name="listaPersonas"
+                            Grid.Row="3"
+                            Grid.Column="0">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5"
+                              ColumnDefinitions="*,Auto,Auto">
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="0"
+                                   VerticalOptions="Center" />
+                            <Button Text="Eliminar"
+                                    Grid.Column="1"
+                                    Background="Transparent"
+                                    TextColor="Red"
+                                    Padding="8,0"
+                                    Clicked="EliminarPersona_Clicked" />
+                            <Label Text="{Binding Id}"
+                                   Grid.Column="2"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
