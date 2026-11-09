@@ -79,6 +79,30 @@ namespace jjitalaS5.Repositories
             }
         }
 
-        //UPDATE
+        public void UpdatePerson(int id, string name)
+        {
+            try
+            {
+                Init();
+
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new Exception("Nombre requerido");
+
+                Persona persona = _conn.Find<Persona>(id);
+                if (persona == null)
+                    throw new Exception("No se encontró la persona");
+
+                persona.Name = name.Trim();
+                int result = _conn.Update(persona);
+                StatusMessage = result > 0
+                    ? "Persona actualizada"
+                    : "No se pudo actualizar la persona";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al actualizar: {ex.Message}";
+                throw;
+            }
+        }
     }
 }
